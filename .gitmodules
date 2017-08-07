@@ -1,0 +1,6 @@
+[submodule "pack/linus4/start/vim-surround"]
+	path = pack/linus4/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "pack/linus4/start/haskell-vim"]
+	path = pack/linus4/start/haskell-vim
+	url = https://github.com/raichoo/haskell-vim

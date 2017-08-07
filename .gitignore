@@ -1,0 +1,5 @@
+.netrwhlist
+spell
+tmp/undo
+tmp/swap
+tmp/backup
