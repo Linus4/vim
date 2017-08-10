@@ -91,7 +91,8 @@ if(filereadable($HOME . "/.vim/colors/onedark.vim"))
         autocmd ColorScheme * highlight StatusLineNC guibg=#2C323C
         autocmd ColorScheme * highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
         autocmd ColorScheme * highlight haskellKeyword guifg=#C678DD
-        autocmd ColorScheme * highlight haskellType guifg=#78A359
+        autocmd ColorScheme * highlight haskellType guifg=#56b6c2 " cyan
+        " autocmd ColorScheme * highlight haskellType guifg=#78A359 " dark green
     endif
 endif
 
