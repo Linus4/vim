@@ -1,3 +1,4 @@
+" List of fileencodings that will be considered when opening a file.
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
     set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -59,7 +60,7 @@ endif
 " ========== INDENTING ==========
 set autoindent      " always set autoindenting on
 set smartindent     " automatically indent when adding a curly bracket, etc.
-set shiftwidth=4    " amount of spaces insertet for tab
+set shiftwidth=4    " amount of spaces inserted for tab
 set tabstop=4       " number of spaces a tab counts for
 set softtabstop=4   " number of spaces that a <Tab> counts for while performing editing operations
 set expandtab       " turns tabs into spaces
@@ -69,8 +70,8 @@ set smarttab
 set number              " show line numbers
 set relativenumber      " show relative line-numbers
 set showcmd             " Display incomplete commands.
-set colorcolumn=80      " highlight column 80
-set cursorline          " highlight current line
+" set colorcolumn=80      " highlight column 80
+" set cursorline          " highlight current line
 set splitbelow          " Splits open below
 set splitright          " and to the right
 set scrolloff=3         " start scrolling 3 lines before edge of viewport
@@ -79,38 +80,39 @@ set noequalalways       " don't resize windows on :q (for netrw)
 set nowrap              " don't wrap lines
 set matchpairs+=<:>     " show matches for <>-brackets (HTML)
 set wildmenu            " turn on the wildmenu (command mode completion)
-set wildignore=*.class,*.o,*.pyc,*.swp,*.swn,*.swo
+set wildignore=*.class,*.o,*.pyc,*.swp,*.swn,*.swo,*.hi
 
 " ========== COLORS / FONTS ==========
+colorscheme less
 " Use onedark colorscheme, if available
 " https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
-if(filereadable($HOME . "/.vim/colors/onedark.vim"))
-    colorscheme onedark
-    if has("autocmd")
-        " overwrite colorscheme to make it more obvious which split has focus
-        autocmd ColorScheme * highlight StatusLineNC guibg=#2C323C
-        autocmd ColorScheme * highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
-        autocmd ColorScheme * highlight haskellKeyword guifg=#C678DD
-        autocmd ColorScheme * highlight haskellType guifg=#56b6c2 " cyan
-        " autocmd ColorScheme * highlight haskellType guifg=#78A359 " dark green
-    endif
-endif
-
-" Use truecolors if available
-if(has("termguicolors"))
-    " necessary to use truecolors in tmux
-    if &term =~# '^screen'
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    endif
-    set termguicolors
-endif
-
-highlight VertSplit gui=none cterm=none
-highlight Folded guifg=NONE guibg=NONE ctermfg=none ctermbg=none
-highlight ColorColumn guibg=#282C34 ctermbg=darkgrey
-highlight StatusLineNC guibg=#2C323C
-highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
+" if(filereadable($HOME . "/.vim/colors/onedark.vim"))
+"     colorscheme onedark
+"     if has("autocmd")
+"         " overwrite colorscheme to make it more obvious which split has focus
+"         " autocmd ColorScheme * highlight StatusLineNC guibg=#2C323C
+"         autocmd ColorScheme * highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
+"         autocmd ColorScheme * highlight haskellKeyword guifg=#C678DD
+"         autocmd ColorScheme * highlight haskellType guifg=#56b6c2 " cyan
+"         " autocmd ColorScheme * highlight haskellType guifg=#78A359 " dark green
+"     endif
+" endif
+" 
+" " Use truecolors if available
+" if(has("termguicolors"))
+"     " necessary to use truecolors in tmux
+"     if &term =~# '^screen'
+"         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"     endif
+"     set termguicolors
+" endif
+" 
+" highlight VertSplit gui=none cterm=none
+" highlight Folded guifg=NONE guibg=NONE ctermfg=none ctermbg=none
+" highlight ColorColumn guibg=#282C34 ctermbg=darkgrey
+" highlight StatusLineNC guibg=#2C323C
+" highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
 " match ErrorMsg '\s\+$'            " flag trailing whitespace
 set fillchars=vert:┃    " character for vertical split drawing (U+2503)
 
@@ -122,17 +124,18 @@ set fillchars=vert:┃    " character for vertical split drawing (U+2503)
 set laststatus=2                " show statusline all the time
 set statusline=
 
-set statusline+=%7*             " switch to User7 highlight group
+set statusline+=\ 
+" set statusline+=%7*             " switch to User7 highlight group
 set statusline+=▶▶\             " UTF-8 character
 set statusline+=%*              " reset highlight group
 
-set statusline+=[%n]\           " buffer number
+" set statusline+=[%n]\           " buffer number
 set statusline+=%<              " truncate point
-set statusline+=%t              " full path
+set statusline+=%f              " relative or typed path to file
 set statusline+=%m%r%w          " modified/readonly flag
 set statusline+=%=              " split point for left and right groups
 " set statusline+=%{&ff}\         " file format
-set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}\       "Encoding
+" set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}\       "Encoding
 set statusline+=%y\             " file type
 set statusline+=%3l             " current line
 set statusline+=/%L\            " total lines
@@ -173,7 +176,7 @@ inoremap {}     {}
 " leave insert-mode on kk
 inoremap kk     <ESC>l
 " compile automatically (C)
-" nnoremap <Leader>c  :!gcc -Wall %<CR>
+nnoremap <Leader>c  :!gcc -Wall %<CR>
 " <Leader><Leader> open last buffer
 nnoremap <Leader><Leader> <C-^>
 " Avoid typing q! by typing qq
@@ -183,7 +186,7 @@ nnoremap H      ^
 nnoremap L      $
 vnoremap H      ^
 vnoremap L      $
-" sudo wirte
+" sudo write
 command! W :w !sudo tee %
 " generate ctags
 command Ctags :!ctags -R .
@@ -199,18 +202,14 @@ nnoremap <Leader>e :e
 nnoremap <Leader>f :find 
 " tag completion with ctrl e
 inoremap <C-e>  <C-x><C-]>
-" if has("xterm-clipboard")
-  vnoremap <Leader>c    "+y
-  nnoremap <Leader>c    "+yy
-" endif
 
 " ========== NETRW ==========
 let g:netrw_liststyle=3                             " tree style listing
 let g:netrw_banner=0                                " hide banner
 let g:netrw_browse_split=4                          " open file in previous window
-let g:netrw_winsize=-35                             " default width to 20
+let g:netrw_winsize=-25                             " default width to 25
 let g:netrw_hide=1                                  " hide files matching hide-list
-let g:netrw_list_hide='.swp,.swn,.swo,.class,.pyc'  " hide swapfiles in netrw
+let g:netrw_list_hide='.swp,.swn,.swo,.class,.hi'   " hide swapfiles in netrw
 let g:netrw_bufsettings='norelativenumber nonumber' " hide line-numbers to save space
 
 " ========== AUTOCOMMANDS ==========
@@ -233,30 +232,39 @@ if has("autocmd")
 
   " change to directory of current file automatically
   " autocmd BufEnter * lcd %:p:h
-  " Max textwidth to 80 for python convention
-  autocmd BufNewFile,BufRead *.py
-      \ setlocal textwidth=79
+  "
   " Settings for html, css
   autocmd BufNewFile,BufRead *.htm,*.html,*.css
       \ setlocal shiftwidth=2 tabstop=2 softtabstop=2 noautoindent nosmartindent nosmarttab
+  
+  " Settings for go
+  autocmd BufNewFile,BufRead *.go
+      \ setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 |
+      \ setlocal makeprg=go\ build |
+
   " Use ant to build java projects
   autocmd BufNewFile,BufRead *.java
       \ set makeprg=ant\ -f\ .. |
       \ set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%# |
       \ abbr sop System.out.println
+
   " use pandoc to build pdfs, wrap text automatically at column 80
   autocmd BufNewFile,BufRead *.md
-      \ setlocal makeprg=pandoc\ --toc\ -o\ output.pdf\ % |
       \ setlocal textwidth=79 |
+
+  " Use stack to build Haskell-projects with :make, use 2 spaces for tabs and
+  " search with hoogle on <s-k>.
   autocmd BufNewFile,BufRead *.hs
       \ set makeprg=stack\ build |
       \ set shiftwidth=2 tabstop=2 softtabstop=2 |
       \ set kp=hoogle
+
   " Display colorcolumn on active window only
-  autocmd WinLeave * set colorcolumn=0
-  autocmd WinEnter * set colorcolumn=80
+  " autocmd WinLeave * set colorcolumn=0
+  " autocmd WinEnter * set colorcolumn=80
 endif
 
+" Fedora default?
 if has("cscope") && filereadable("/usr/bin/cscope")
    set csprg=/usr/bin/cscope
    set csto=0
@@ -281,3 +289,5 @@ endif
 " Don't wake up system with blinking cursor:
 let &guicursor = &guicursor . ",a:blinkon0"
 set nohlsearch
+
+" plugins: fugitive, ctrlp, tabularize, vim-surround, vim-go
