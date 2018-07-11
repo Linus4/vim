@@ -19,5 +19,9 @@ hi PreProc      cterm=NONE ctermfg=White
 hi Type         cterm=NONE ctermfg=White
 hi Special      cterm=NONE ctermfg=White
 hi Delimiter    cterm=NONE ctermfg=White
+
 hi LineNr       cterm=NONE ctermfg=DarkGrey
 hi StatusLine   ctermfg=2
+
+" Only because of vim's bad markdown support
+hi Error        cterm=NONE  ctermfg=White ctermbg=Black
