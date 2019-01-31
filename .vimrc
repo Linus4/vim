@@ -70,8 +70,8 @@ set smarttab
 set number              " show line numbers
 set relativenumber      " show relative line-numbers
 set showcmd             " Display incomplete commands.
-" set colorcolumn=80      " highlight column 80
-" set cursorline          " highlight current line
+set colorcolumn=80      " highlight column 80
+set cursorline          " highlight current line
 set splitbelow          " Splits open below
 set splitright          " and to the right
 set scrolloff=3         " start scrolling 3 lines before edge of viewport
@@ -83,38 +83,45 @@ set wildmenu            " turn on the wildmenu (command mode completion)
 set wildignore=*.class,*.o,*.pyc,*.swp,*.swn,*.swo,*.hi
 
 " ========== COLORS / FONTS ==========
-colorscheme less
+colorscheme onedark
 " Use onedark colorscheme, if available
 " https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
-" if(filereadable($HOME . "/.vim/colors/onedark.vim"))
-"     colorscheme onedark
-"     if has("autocmd")
-"         " overwrite colorscheme to make it more obvious which split has focus
-"         " autocmd ColorScheme * highlight StatusLineNC guibg=#2C323C
-"         autocmd ColorScheme * highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
-"         autocmd ColorScheme * highlight haskellKeyword guifg=#C678DD
-"         autocmd ColorScheme * highlight haskellType guifg=#56b6c2 " cyan
-"         " autocmd ColorScheme * highlight haskellType guifg=#78A359 " dark green
-"     endif
-" endif
-" 
-" " Use truecolors if available
-" if(has("termguicolors"))
-"     " necessary to use truecolors in tmux
-"     if &term =~# '^screen'
-"         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"     endif
-"     set termguicolors
-" endif
-" 
-" highlight VertSplit gui=none cterm=none
-" highlight Folded guifg=NONE guibg=NONE ctermfg=none ctermbg=none
-" highlight ColorColumn guibg=#282C34 ctermbg=darkgrey
-" highlight StatusLineNC guibg=#2C323C
-" highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
+if(filereadable($HOME . "/.vim/colors/onedark.vim"))
+    colorscheme onedark
+    if has("autocmd")
+        " overwrite colorscheme to make it more obvious which split has focus
+        autocmd ColorScheme * highlight StatusLineNC guibg=#2C323C
+        autocmd ColorScheme * highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
+        autocmd ColorScheme * highlight haskellKeyword guifg=#C678DD
+        autocmd ColorScheme * highlight haskellType guifg=#56b6c2 " cyan
+        " autocmd ColorScheme * highlight haskellType guifg=#78A359 " dark green
+    endif
+endif
+
+" Use truecolors if available
+" On fedora use gvim for truecolor support
+if(has("termguicolors"))
+    " necessary to use truecolors in tmux
+    if &term =~# '^screen'
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+    set termguicolors
+endif
+
+highlight VertSplit gui=none cterm=none
+highlight Folded guifg=NONE guibg=NONE ctermfg=none ctermbg=none
+highlight ColorColumn guibg=#282C34 ctermbg=darkgrey
+highlight StatusLineNC guibg=#2C323C
+highlight User7 guifg=#EE0000 guibg=#2C323C ctermfg=red ctermbg=236
 " match ErrorMsg '\s\+$'            " flag trailing whitespace
 set fillchars=vert:┃    " character for vertical split drawing (U+2503)
+
+" Enable vim-go extended syntax highlighting
+" let g:go_highlight_types = 1 " bug?
+" let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 
 " Highlight Haskell types
 " let hs_highlight_types = 1
@@ -207,7 +214,7 @@ inoremap <C-e>  <C-x><C-]>
 let g:netrw_liststyle=3                             " tree style listing
 let g:netrw_banner=0                                " hide banner
 " let g:netrw_browse_split=4                          " open file in previous window
-" let g:netrw_winsize=-25                             " default width to 25
+let g:netrw_winsize=-25                             " default width to 25
 let g:netrw_hide=1                                  " hide files matching hide-list
 let g:netrw_list_hide='.swp,.swn,.swo,.class,.hi'   " hide swapfiles in netrw
 let g:netrw_bufsettings='norelativenumber nonumber' " hide line-numbers to save space
@@ -290,4 +297,4 @@ endif
 let &guicursor = &guicursor . ",a:blinkon0"
 set nohlsearch
 
-" plugins: fugitive, ctrlp, tabularize, vim-surround, vim-go
+" plugins: fugitive, vim-surround, tabularize, ctrlp, vim-go
