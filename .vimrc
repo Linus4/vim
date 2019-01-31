@@ -207,8 +207,6 @@ nnoremap <Leader>s  :b
 nnoremap <Leader>e :e 
 " find file (fuzzy) with leader f
 nnoremap <Leader>f :find 
-" tag completion with ctrl e
-inoremap <C-e>  <C-x><C-]>
 " Delete character below cursor with ctrl l (ctrl h deletes character before
 " cursor)
 inoremap <C-l> <Del>
