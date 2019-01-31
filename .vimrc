@@ -182,8 +182,6 @@ inoremap {{     {
 inoremap {}     {}
 " leave insert-mode on kk
 inoremap kk     <ESC>l
-" compile automatically (C)
-nnoremap <Leader>c  :!gcc -Wall %<CR>
 " <Leader><Leader> open last buffer
 nnoremap <Leader><Leader> <C-^>
 " Avoid typing q! by typing qq
