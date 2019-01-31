@@ -199,6 +199,8 @@ command! W :w !sudo tee %
 command Ctags :!ctags -R .
 " generate tags for haskell
 command Htags :!fast-tags -R .
+" generate tags for go
+command Gtags :!gotags -R . > tags
 " Remove trailing whitespace
 command Rtw :%s/\s\+$//e
 " switch buffer with leader s
