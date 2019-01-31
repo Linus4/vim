@@ -180,8 +180,6 @@ inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
-" leave insert-mode on kk
-inoremap kk     <ESC>l
 " <Leader><Leader> open last buffer
 nnoremap <Leader><Leader> <C-^>
 " Avoid typing q! by typing qq
