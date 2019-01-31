@@ -176,10 +176,7 @@ let maplocalleader="\\"
 " toggle fold on current location
 nnoremap <s-tab> za
 " Automatically append closing curly-brackets
-inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
 " <Leader><Leader> open last buffer
 nnoremap <Leader><Leader> <C-^>
 " Avoid typing q! by typing qq
