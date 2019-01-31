@@ -12,6 +12,9 @@ set hidden              " hide buffers with unsaved changes without being prompt
 set formatoptions+=j    " remove comment leader when joining comments
 set nojoinspaces        " don't autoinsert two spaces after '.', '?', '!' when joining lines
 set lazyredraw          " don't bother updating screen during macro playback
+if has('mouse')
+    set mouse=a         " enables mouse to scroll, move cursor, select pane, visually select, open folders in netrw...
+endif
 
 " ========== BELLS ==========
 set noerrorbells        " disable beeping
@@ -205,6 +208,8 @@ nnoremap <Leader>f :find
 " Delete character below cursor with ctrl l (ctrl h deletes character before
 " cursor)
 inoremap <C-l> <Del>
+" Yank to the clipboard from visual mode
+vnoremap <Leader>y "+y
 
 " ========== NETRW ==========
 let g:netrw_liststyle=3                             " tree style listing
