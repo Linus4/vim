@@ -19,3 +19,12 @@ Add the following to `.bashrc` :
 ```
 alias vim="gvim -v"
 ```
+
+# Light colorscheme
+
+To use a light colorscheme (for a presentation):
+
+```
+colo hemisu
+set background=light
+```
