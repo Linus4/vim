@@ -216,8 +216,8 @@ inoremap <C-l> <Del>
 " ========== NETRW ==========
 let g:netrw_liststyle=3                             " tree style listing
 let g:netrw_banner=0                                " hide banner
-" let g:netrw_browse_split=4                          " open file in previous window
-let g:netrw_winsize=-25                             " default width to 25
+" let g:netrw_browse_split=4                          " open file in previous window ([num]C)
+let g:netrw_winsize=-25                             " default width to 25 (:vertical res [num])
 let g:netrw_hide=1                                  " hide files matching hide-list
 let g:netrw_list_hide='.swp,.swn,.swo,.class,.hi'   " hide swapfiles in netrw
 let g:netrw_bufsettings='norelativenumber nonumber' " hide line-numbers to save space
@@ -300,4 +300,4 @@ endif
 let &guicursor = &guicursor . ",a:blinkon0"
 set nohlsearch
 
-" plugins: fugitive, vim-surround, tabularize, ctrlp, vim-go
+" plugins: fugitive, vim-surround, language-specific like vim-go
