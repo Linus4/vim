@@ -142,7 +142,7 @@ set statusline+=%f              " relative or typed path to file
 set statusline+=%m%r%w          " modified/readonly flag
 set statusline+=%=              " split point for left and right groups
 " set statusline+=%{&ff}\         " file format
-" set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}\       "Encoding
+set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}\       "Encoding
 set statusline+=%y\             " file type
 set statusline+=%3l             " current line
 set statusline+=/%L\            " total lines
